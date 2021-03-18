@@ -1,5 +1,8 @@
+using GroupLinkApi.Database;
+using GroupLinkApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,6 +22,14 @@ namespace GroupLinkApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.ConfigureServices();
+
+            services.AddDbContext<GroupLinkContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("LocalDatabase"));
+            });
+
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -27,6 +38,11 @@ namespace GroupLinkApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "GroupLinkApi");
+                });
             }
 
             app.UseRouting();
