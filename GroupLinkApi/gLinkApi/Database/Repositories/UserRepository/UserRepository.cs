@@ -20,5 +20,44 @@ namespace GroupLinkApi.Database.Repositories.UserRepository
             }
             return users;
         }
+
+        public Users GetUser(int idUser)
+        {
+            Users user = new Users();
+            if (DatabaseCorrectness().Result)
+            {
+                user = _context.Users.Where(x => x.idUser == idUser).FirstOrDefault();
+            }
+            return user;
+        }
+        public Users GetUser(string login, string password)
+        {
+            Users user = new Users();
+            if (DatabaseCorrectness().Result)
+            {
+                user = _context.Users.Where(x => x.login == login && x.password == password).FirstOrDefault();                
+            }
+            return user;
+        }
+        public bool CheckFreePassword(string password)
+        {
+            var user = _context.Users.SingleOrDefault(x => x.password == password);
+
+            if (user == null)
+                return false;
+            else
+                return true;
+        }
+        public bool CheckFreeLogin(string login)
+        {
+            var user = _context.Users.SingleOrDefault(x => x.login == login);
+
+            if (user == null)
+                return false;
+            else
+                return true;
+        }
+
+
     }
 }

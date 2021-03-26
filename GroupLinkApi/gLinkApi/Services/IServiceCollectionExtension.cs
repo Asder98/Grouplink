@@ -8,6 +8,7 @@ namespace GroupLinkApi.Services
     {
         public static IServiceCollection ConfigureServices(this IServiceCollection services)
         {
+            
             // SERVICES
             services.AddScoped<IUserService, UserService>();
 
