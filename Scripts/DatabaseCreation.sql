@@ -26,18 +26,27 @@ CREATE TABLE Lecturers (
 	email varchar(50) NULL,
 )
 
+CREATE TABLE ClassSchedules (
+	idClassSchedule int NOT NULL PRIMARY KEY IDENTITY(1,1), 
+	dayOfTheWeek varchar(20) NOT NULL,
+	startTime varchar(10) NOT NULL,
+	type varchar(5) NOT NULL
+)
+
 -- Table Courses
 CREATE TABLE Courses (
 	idCourse int NOT NULL PRIMARY KEY IDENTITY(1,1),
 	idLecturer int NOT NULL,
 	groupCode varchar(10) NOT NULL,
 	courseCode varchar(20) NULL,
-	startDate Date NOT NULL,
 	groupMixingType varchar(10) NULL,
-	weekType varchar(5) NOT NULL,
+	idClassSchedule int NOT NULL
 
 	CONSTRAINT FK_CourseLecturer FOREIGN KEY (idLecturer)
-    REFERENCES Lecturers(idLecturer)
+    REFERENCES Lecturers(idLecturer),
+
+	CONSTRAINT FK_CourseSchedule FOREIGN KEY (idClassSchedule)
+    REFERENCES ClassSchedules(idClassSchedule)
 )
 
 -- Table UsersCourses 
@@ -61,6 +70,7 @@ CREATE TABLE Notifications (
 	title varchar(40) NULL,
 	content varchar(255) NULL,
 	type varchar(20),
+	amount int NULL
 
 	CONSTRAINT FK_UserNotification FOREIGN KEY (idUser) 
 	REFERENCES Users(idUser),
