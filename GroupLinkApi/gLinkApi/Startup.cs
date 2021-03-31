@@ -1,4 +1,5 @@
 using GroupLinkApi.Database;
+using GroupLinkApi.Helpers;
 using GroupLinkApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,7 +24,10 @@ namespace GroupLinkApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
             services.ConfigureServices();
+
 
             services.AddDbContext<GroupLinkContext>(options =>
             {
@@ -74,7 +78,16 @@ namespace GroupLinkApi
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            // global cors policy
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
+            // custom jwt auth middleware
+            app.UseMiddleware<JwtMiddleware>();
+
+            app.UseAuthorization();//zobaczymy czy sie nie bedzie gryzc
 
             app.UseEndpoints(endpoints =>
             {
