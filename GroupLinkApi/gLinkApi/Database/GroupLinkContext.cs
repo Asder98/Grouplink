@@ -19,6 +19,7 @@ namespace GroupLinkApi.Database
         public virtual DbSet<Notifications> Notifications { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UsersCourses> UsersCourses { get; set; }
+        public virtual DbSet<ClassSchedules> ClassSchedules { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
