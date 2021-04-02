@@ -2,8 +2,8 @@ version: '3.7'
 
 services:
 
-  grouplink:
-    container_name: grouplink_web
+  grouplink-web:
+    container_name: grouplink-web
     build:
       context: .
       dockerfile: Dockerfile
