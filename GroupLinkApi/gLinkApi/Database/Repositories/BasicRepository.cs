@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GroupLinkApi.Database.Repositories
@@ -14,7 +15,7 @@ namespace GroupLinkApi.Database.Repositories
             _logger = logger;
             _context = context;
         }
-
+        
         public async Task<bool> DatabaseCorrectness()
         {
             try
