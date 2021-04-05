@@ -21,10 +21,6 @@ namespace GroupLinkApi.Controllers
             return _notificationService.GetNotifications(type);
         }
 
-        [HttpPost()]
-        public ActionResult<Notifications> AddNotification(Notifications notification)
-        {
-
-        }
+        
     }
 }
