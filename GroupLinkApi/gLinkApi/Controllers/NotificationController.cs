@@ -21,6 +21,34 @@ namespace GroupLinkApi.Controllers
             return _notificationService.GetNotifications(type);
         }
 
-        
+        [HttpPost]
+        public IActionResult Add(Notifications notification)
+        {
+            var result = _notificationService.Add(notification);
+            if (result.Result)
+                return Ok(notification);
+            else
+                return StatusCode(500);
+        }
+
+        [HttpPut]
+        public IActionResult Update(Notifications notification)
+        {
+            var result = _notificationService.Update(notification);
+            if (result)
+                return Ok(notification);
+            else
+                return StatusCode(500);
+        }
+
+        [HttpDelete("{idNotification}")]
+        public IActionResult Delete(int idNotification)
+        {
+            var result = _notificationService.Delete(idNotification);
+            if (result)
+                return Ok();
+            else
+                return StatusCode(500);
+        }
     }
 }
