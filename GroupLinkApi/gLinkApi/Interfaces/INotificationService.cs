@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using Dtos;
+using Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,7 +7,7 @@ namespace GroupLinkApi.Interfaces
 {
     public interface INotificationService 
     {
-        List<Notifications> GetNotifications(string type);
+        List<ProjectNotificationDto> GetNotifications();
         Task<bool> Add(Notifications notification);
         bool Update(Notifications notification);
         bool Delete(int idNotification);

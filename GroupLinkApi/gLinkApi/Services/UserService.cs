@@ -1,5 +1,5 @@
 ﻿using Entities;
-using GroupLinkApi.Database.Repositories.UserRepository;
+using GroupLinkApi.Database.Repositories;
 using GroupLinkApi.Helpers;
 using GroupLinkApi.Interfaces;
 using GroupLinkApi.Models;

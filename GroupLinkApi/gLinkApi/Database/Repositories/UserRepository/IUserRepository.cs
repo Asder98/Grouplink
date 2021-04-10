@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GroupLinkApi.Database.Repositories.UserRepository
+namespace GroupLinkApi.Database.Repositories
 {
     public interface IUserRepository : IBasicRepository<Users>
     {

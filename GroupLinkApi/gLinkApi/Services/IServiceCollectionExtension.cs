@@ -1,4 +1,4 @@
-﻿using GroupLinkApi.Database.Repositories.UserRepository;
+﻿using GroupLinkApi.Database.Repositories;
 using GroupLinkApi.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,9 +11,11 @@ namespace GroupLinkApi.Services
             
             // SERVICES
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<INotificationService, NotificationService>();
 
             // REPOSITORIES
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<INotificationRepository, NotificationRepository>();
 
             return services;
         }

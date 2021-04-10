@@ -30,6 +30,7 @@ CREATE TABLE ClassSchedules (
 	idClassSchedule int NOT NULL PRIMARY KEY IDENTITY(1,1), 
 	dayOfTheWeek varchar(20) NOT NULL,
 	startTime varchar(10) NOT NULL,
+	endTime varchar(10) NOT NULL,
 	type varchar(5) NOT NULL
 )
 
@@ -37,6 +38,7 @@ CREATE TABLE ClassSchedules (
 CREATE TABLE Courses (
 	idCourse int NOT NULL PRIMARY KEY IDENTITY(1,1),
 	idLecturer int NOT NULL,
+	courseName varchar(50) NOT NULL,
 	groupCode varchar(10) NOT NULL,
 	courseCode varchar(20) NULL,
 	groupMixingType varchar(10) NULL,

@@ -1,7 +1,7 @@
 ﻿using Entities;
 using System.Collections.Generic;
 
-namespace GroupLinkApi.Database.Repositories.NotificationRepository
+namespace GroupLinkApi.Database.Repositories
 {
     public interface INotificationRepository : IBasicRepository<Notifications>
     {

@@ -1,7 +1,9 @@
-﻿using Entities;
+﻿using Dtos;
+using Entities;
 using GroupLinkApi.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace GroupLinkApi.Controllers
 {
@@ -15,10 +17,13 @@ namespace GroupLinkApi.Controllers
             _notificationService = notificationService;
         }
 
-        [HttpGet("{type}")]
-        public List<Notifications> GetNotifications(string type)
+        [HttpGet]
+        public List<ProjectNotificationDto> GetNotifications()
         {
-            return _notificationService.GetNotifications(type);
+            var clock = new Stopwatch();
+            clock.Start();
+            return _notificationService.GetNotifications();
+            clock.Stop();
         }
 
         [HttpPost]

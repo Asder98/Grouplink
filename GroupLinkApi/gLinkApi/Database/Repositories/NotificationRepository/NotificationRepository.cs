@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GroupLinkApi.Database.Repositories.NotificationRepository
+namespace GroupLinkApi.Database.Repositories
 {
     public class NotificationRepository : BasicRepository<Notifications>, INotificationRepository 
     {

@@ -14,6 +14,6 @@ namespace Entities
         public string content { get; set; }
         [MaxLength(20)]
         public string type { get; set; }
-
+        public int amount { get; set; }
     }
 }
