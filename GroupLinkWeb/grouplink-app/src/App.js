@@ -4,6 +4,7 @@ import { Route, Switch, withRouter, Redirect } from "react-router";
 import "./App.css";
 import Auth from "./containters/Auth/Auth";
 import StartPage from "./containters/StartPage/StartPage";
+import Landing from "./containters/Landing/Landing";
 import Search from "./containters/Search/Search";
 import Group from "./containters/Group/Group";
 import Posting from "./containters/Posting/Posting";
@@ -17,7 +18,7 @@ function App() {
     <Switch>
       <Route path="/login" component={Auth} />
       <Route path="/register" component={Auth} />
-      <Route path="/" component={StartPage} />
+      <Route path="/" component={Landing} />
       <Redirect to="/" />
     </Switch>
   );
