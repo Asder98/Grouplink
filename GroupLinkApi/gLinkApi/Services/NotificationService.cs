@@ -20,13 +20,31 @@ namespace GroupLinkApi.Services
             _context = groupLinkContext;
         }
 
-        public List<ProjectNotificationDto> GetNotifications()
+        public List<ShortNotification> GetNotifications(int idCourse)
+        {
+            var res = (from notifications in _context.Notifications
+                       join users in _context.Users on notifications.idUser equals users.idUser
+                       where notifications.idCourse == idCourse
+                       select new ShortNotification()
+                       {
+                            idNotification = notifications.idNotification,
+                            title = notifications.title,
+                            content = notifications.content,
+                            login = users.login,
+                            email = users.email
+                       }).ToList();
+            
+            return res;
+        }
+
+        public List<ExtendedNotification> GetUserNotifications(int idUser)
         {
             var res = (from notifications in _context.Notifications
                        join courses in _context.Courses on notifications.idCourse equals courses.idCourse
                        join lecturers in _context.Lecturers on courses.idLecturer equals lecturers.idLecturer
                        join classSchedules in _context.ClassSchedules on courses.idClassSchedule equals classSchedules.idClassSchedule
-                       select new ProjectNotificationDto
+                       where notifications.idUser == idUser 
+                       select new ExtendedNotification
                        {
                            CourseName = courses.courseName,
                            CourseCode = courses.courseCode,

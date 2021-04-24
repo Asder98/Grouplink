@@ -7,7 +7,8 @@ namespace GroupLinkApi.Interfaces
 {
     public interface INotificationService 
     {
-        List<ProjectNotificationDto> GetNotifications();
+        List<ShortNotification> GetNotifications(int idCourse);
+        List<ExtendedNotification> GetUserNotifications(int idUser);
         Task<bool> Add(Notifications notification);
         bool Update(Notifications notification);
         bool Delete(int idNotification);

@@ -1,6 +1,6 @@
 ﻿namespace Dtos
 {
-    public class ProjectNotificationDto
+    public class ExtendedNotification
     {
         public string GroupCode { get; set; }
         public string CourseName { get; set; }

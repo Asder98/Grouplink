@@ -3,7 +3,6 @@ using Entities;
 using GroupLinkApi.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace GroupLinkApi.Controllers
 {
@@ -17,13 +16,16 @@ namespace GroupLinkApi.Controllers
             _notificationService = notificationService;
         }
 
-        [HttpGet]
-        public List<ProjectNotificationDto> GetNotifications()
+        [HttpGet("Course/{idCourse}")]
+        public List<ShortNotification> GetNotifications(int idCourse)
         {
-            var clock = new Stopwatch();
-            clock.Start();
-            return _notificationService.GetNotifications();
-            clock.Stop();
+            return _notificationService.GetNotifications(idCourse);
+        }
+
+        [HttpGet("{idUser}")]
+        public List<ExtendedNotification> GetUserNotifications(int idUser)
+        {
+            return _notificationService.GetUserNotifications(idUser);
         }
 
         [HttpPost]
