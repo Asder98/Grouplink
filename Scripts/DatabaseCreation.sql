@@ -38,6 +38,7 @@ CREATE TABLE ClassSchedules (
 CREATE TABLE Courses (
 	idCourse int NOT NULL PRIMARY KEY IDENTITY(1,1),
 	idLecturer int NOT NULL,
+	courseName varchar(50) NOT NULL,
 	groupCode varchar(10) NOT NULL,
 	courseCode varchar(20) NULL,
 	groupMixingType varchar(10) NULL,

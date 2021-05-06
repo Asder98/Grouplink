@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GroupLinkApi.Database.Repositories.UserRepository
+namespace GroupLinkApi.Database.Repositories
 {
     public class UserRepository : BasicRepository<Users>, IUserRepository
     {

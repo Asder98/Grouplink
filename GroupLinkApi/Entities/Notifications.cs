@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Entities
 {
@@ -12,8 +13,10 @@ namespace Entities
         public string title { get; set; }
         [MaxLength(255)]
         public string content { get; set; }
-        [MaxLength(20)]
-        public string type { get; set; }
+        public int amount { get; set; }
 
+        [MaxLength(20)]
+        [JsonIgnore]
+        public string type { get; set; }
     }
 }

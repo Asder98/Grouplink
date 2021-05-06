@@ -8,6 +8,9 @@ namespace Entities
         [Key]
         public int idCourse { get; set; }
         public int idLecturer { get; set; }
+        public int idClassSchedule { get; set; }
+        [MaxLength(50)]
+        public string courseName { get; set; }
         [MaxLength(10)]
         public string groupCode { get; set; }
         [MaxLength(20)]

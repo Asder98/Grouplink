@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupLinkApi", "GroupLinkApi.csproj", "{8F08F064-7660-4720-965A-103B8CF2C482}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupLinkApi", "gLinkApi\GroupLinkApi.csproj", "{8F08F064-7660-4720-965A-103B8CF2C482}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "..\Entities\Entities.csproj", "{590681D5-A49D-4E19-A48C-1047113C38A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{590681D5-A49D-4E19-A48C-1047113C38A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dtos", "..\Dtos\Dtos.csproj", "{FD517A5B-D9CD-410E-B0C2-990D39457DE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dtos", "Dtos\Dtos.csproj", "{FD517A5B-D9CD-410E-B0C2-990D39457DE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +27,10 @@ Global
 		{FD517A5B-D9CD-410E-B0C2-990D39457DE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD517A5B-D9CD-410E-B0C2-990D39457DE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD517A5B-D9CD-410E-B0C2-990D39457DE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{463D2F6A-A560-45A8-A3AA-22F97E55229A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{463D2F6A-A560-45A8-A3AA-22F97E55229A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{463D2F6A-A560-45A8-A3AA-22F97E55229A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{463D2F6A-A560-45A8-A3AA-22F97E55229A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
