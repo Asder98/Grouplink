@@ -1,5 +1,5 @@
 ﻿using Entities;
-using GroupLinkApi.Models;
+using Dtos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,6 +12,6 @@ namespace GroupLinkApi.Interfaces
         bool AddUser(RegisterModel registerModel);
         bool CheckFreePassword(string password);
         bool CheckFreeLogin(string login);
-        Users GetById(int userId);
+        Users GetById(int idUser);
     }
 }

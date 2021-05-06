@@ -11,6 +11,21 @@ namespace GroupLinkApi.Database.Repositories.UserRepository
     {
         public UserRepository(GroupLinkContext context, ILogger<BasicRepository<Users>> logger) : base(context, logger) { }
 
+        public int GetUserId(string login)
+        {
+            Users user = new Users();
+            if (DatabaseCorrectness().Result)
+            {
+                user = _context.Users.Where(x => x.login == login).FirstOrDefault();
+            }
+
+            if (user == null)
+                return 0;
+            else
+                return user.idUser;
+        }
+
+
         public async Task<List<Users>> GetUsers() 
         {
             List<Users> users = new List<Users>();
@@ -37,11 +52,12 @@ namespace GroupLinkApi.Database.Repositories.UserRepository
             {
                 user = _context.Users.Where(x => x.login == login && x.password == password).FirstOrDefault();                
             }
+
             return user;
         }
         public bool CheckFreePassword(string password)
         {
-            var user = _context.Users.SingleOrDefault(x => x.password == password);
+            var user = _context.Users.Where(x => x.password == password).FirstOrDefault();
 
             if (user == null)
                 return false;
@@ -50,7 +66,7 @@ namespace GroupLinkApi.Database.Repositories.UserRepository
         }
         public bool CheckFreeLogin(string login)
         {
-            var user = _context.Users.SingleOrDefault(x => x.login == login);
+            var user = _context.Users.Where(x => x.login == login).FirstOrDefault();
 
             if (user == null)
                 return false;

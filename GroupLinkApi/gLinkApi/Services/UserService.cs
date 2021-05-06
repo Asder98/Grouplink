@@ -2,7 +2,6 @@
 using GroupLinkApi.Database.Repositories.UserRepository;
 using GroupLinkApi.Helpers;
 using GroupLinkApi.Interfaces;
-using GroupLinkApi.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -12,13 +11,13 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Dtos;
 
 namespace GroupLinkApi.Services
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-
         private readonly AppSettings _appSettings;
 
         public UserService(IUserRepository userRepository, IOptions<AppSettings> appSettings)
@@ -39,6 +38,7 @@ namespace GroupLinkApi.Services
 
             var token = GenerateJwtToken(user);
 
+
             return new AuthenticateResponse(user, token);
         }
 
@@ -48,9 +48,9 @@ namespace GroupLinkApi.Services
             return await _userRepository.GetUsers();
         }
 
-        public Users GetById(int userId)
+        public Users GetById(int idUser)
         {
-            return _userRepository.GetUser(userId);
+            return _userRepository.GetUser(idUser);
         }
         public bool AddUser(RegisterModel registerModel)
         {

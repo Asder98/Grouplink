@@ -8,7 +8,8 @@ namespace GroupLinkApi.Database.Repositories.UserRepository
     {
         Task<List<Users>> GetUsers();
         Users GetUser(string login, string password);
-        Users GetUser(int idUser);
+        int GetUserId(string login);
+        Users GetUser(int idUser); 
         bool CheckFreePassword(string password);
         bool CheckFreeLogin(string login);
     }

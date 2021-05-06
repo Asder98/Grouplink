@@ -84,10 +84,10 @@ namespace GroupLinkApi
                 .AllowAnyMethod()
                 .AllowAnyHeader());
 
-            // custom jwt auth middleware
-            app.UseMiddleware<JwtMiddleware>();
 
-            app.UseAuthorization();//zobaczymy czy sie nie bedzie gryzc
+            app.UseMiddleware<JwtMiddleware>();
+            app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

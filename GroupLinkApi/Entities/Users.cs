@@ -1,10 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Entities
 {
     public class Users
     {
-        [Key]
+        [Key, JsonIgnore]
         public int idUser { get; set; }
         [MaxLength(20)]
         public string name { get; set; }
@@ -16,5 +19,9 @@ namespace Entities
         public string login { get; set; }
         [MaxLength(30)]
         public string password { get; set; }
+
+
+        [NotMapped, JsonIgnore]
+        public virtual List<UsersCourses> UsersCourses { get; set; }
     }
 }

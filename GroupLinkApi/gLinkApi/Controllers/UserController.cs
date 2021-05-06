@@ -1,6 +1,7 @@
 ﻿using Entities;
+using Dtos;
 using GroupLinkApi.Interfaces;
-using GroupLinkApi.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -50,8 +51,10 @@ namespace GroupLinkApi.Controllers
                 return StatusCode(500);
         }
 
-        //[Authorize]
+
+        [Authorize]
         [HttpGet]
+        [Route("asdasd")]
         public async Task<List<Users>> GetUsers()
         {
             return await _userService.GetUsers();

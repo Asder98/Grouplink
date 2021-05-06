@@ -7,14 +7,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GroupLinkApi.Helpers
-{
+
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class AuthorizeAttribute : Attribute, IAuthorizationFilter
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            var user = (Users)context.HttpContext.Items["User"];
+            var user = (Users)context.HttpContext.Items["Users"];
             if (user == null)
             {
                 // not logged in
@@ -22,4 +21,4 @@ namespace GroupLinkApi.Helpers
             }
         }
     }
-}
+
