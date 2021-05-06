@@ -7,26 +7,6 @@ const StartPage = ({match}) => {
     
     return (
         <div>
-        <AppBar position="relative" >
-          <Toolbar>
-            <Typography variant="h6" className={styles.title}>
-              GroupLink
-            </Typography>
-            <Box mr={2}>
-              <Button className={styles.signInButton} color="inherit" variant="outlined">
-                  <Typography variant="button">
-                      Zaloguj się
-                  </Typography>
-              </Button>
-            </Box>
-            <Button className={styles.signUpButton} color="inherit" variant="contained">
-                <Typography variant="button" color="primary">
-                    Utwórz konto
-                </Typography>
-            </Button>
-            
-          </Toolbar>
-        </AppBar>
         <Box display="flex" alignItems="center" flexWrap="nowrap" justifyContent="space-between" className={styles.cardWrapper}>
           <div className={styles.graph}>
             <div className={styles.innerGraph}/>
@@ -43,8 +23,8 @@ const StartPage = ({match}) => {
             </Typography>
             <Box display="flex" flexDirection="row" mt={1}>
               <Box mr={2} >
-                <Button className={styles.signInButton} color="primary" variant="outlined">
-                    <Typography variant="button">
+                <Button className={styles.signInButton} color="secondary" variant="outlined">
+                    <Typography variant="button" color="primary">
                         Zaloguj się
                     </Typography>
                 </Button>

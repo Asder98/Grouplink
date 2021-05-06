@@ -1,28 +1,44 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Button, Grid } from '@material-ui/core';
+import { Card, TextField, IconButton, Typography, Button, Grid, Container, CardHeader, Box } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
+      marginTop: theme.spacing(20),
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
     },
-    menuButton: {
-      marginRight: theme.spacing(2),
+    card: {
+      width: 500,
+      borderRadius: 50,
+      boxShadow: '0px 20px 40px #2699FB33',
+      // opacity: 1
     },
     title: {
-      flexGrow: 1,
+      marginTop: 80,
+      marginBottom: 40,
+      marginLeft: 95,
+      color: '#7F7F7F'
     },
-    appBar: {
-        margin: 0
+    subTitle: {
+      marginLeft: 95,
+      color: '#7F7F7F'
     },
-    signInButton: {
-        marginRight: theme.spacing(2),
-        width: 160,
-        height: 38
+    fieldText: {
+      width: 250,
+      marginLeft: 95,
+      marginTop: 30,
+      marginBottom: 70,
+      fontSize: 12
     },
-    signUpButton: {
-        width: 160,
-        height: 38
+    findButton: {
+      height: 40,
+      marginLeft: 10,
+      marginTop: 30,
+      marginBottom: 70,
+      borderRadius: 25
     }
   }));
 
@@ -31,27 +47,34 @@ const StartPage = ({match}) => {
     console.log(match);
     
     return (
-        <div className={classes.root}>
-        <AppBar position="absolute" >
-          <Toolbar>
-            <Typography variant="h6" className={classes.title}>
-              GroupLink
-            </Typography>
-            <div>
-            <Button className={classes.signInButton} color="inherit" variant="outlined" m={12}>
-                <Typography variant="button">
-                    Zaloguj się
-                </Typography>
-            </Button>
-            <Button className={classes.signUpButton} color="inherit" variant="contained">
-                <Typography variant="button" color="primary">
-                    Utwórz konto
-                </Typography>
-            </Button>
-            </div>
-          </Toolbar>
-        </AppBar>
-      </div>
+      <Container className={classes.root} maxWidth="xs">
+        <Card className={classes.card}>
+          <Typography variant="h4" className={classes.title}>
+            Witaj!
+          </Typography>
+          <Typography variant="h6" className={classes.subTitle}>
+            Zacznijmy poszukiwania!
+          </Typography>
+          <Typography variant="h6" className={classes.subTitle}>
+            Skorzystaj z wyszukiwarki poniżej.
+          </Typography>
+          <TextField
+                        variant="outlined"
+                        size="small"
+                        id="email"
+                        label={<Typography variant="caption">
+                          Wpisz kod kursu lub nazwę przedmiotu
+                        </Typography>}
+                        name="email"
+                        autoComplete="email"
+                        autoFocus
+                        className={classes.fieldText}
+                    />
+            <Button aria-label="search" variant="contained" color="primary" className={classes.findButton}>
+              <SearchIcon />
+          </Button>
+        </Card>
+      </Container>
     )
 }
 
