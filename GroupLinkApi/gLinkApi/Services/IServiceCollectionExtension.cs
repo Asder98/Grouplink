@@ -4,6 +4,7 @@ using GroupLinkApi.Database.Repositories.CourseRepository;
 using GroupLinkApi.Database.Repositories.LectureRepository;
 using GroupLinkApi.Database.Repositories.UserCourseRepository;
 using GroupLinkApi.Database.Repositories.UserRepository;
+using GroupLinkApi.Database.Repositories;
 using GroupLinkApi.Interfaces;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -25,6 +26,7 @@ namespace GroupLinkApi.Services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICourseService, CourseService>();
 
+            services.AddScoped<INotificationService, NotificationService>();
 
             // REPOSITORIES
             services.AddScoped<IUserRepository, UserRepository>();
@@ -32,6 +34,7 @@ namespace GroupLinkApi.Services
             services.AddScoped<ILectureRepository, LectureRepository>();
             services.AddScoped<IClassScheduleRepository, ClassScheduleRepository>(); 
             services.AddScoped<IUserCourseRepository, UserCourseRepository>();
+            services.AddScoped<INotificationRepository, NotificationRepository>();
 
             return services;
         }

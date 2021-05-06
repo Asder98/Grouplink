@@ -1,0 +1,63 @@
+.title {
+    flex-grow: 1
+}
+
+.barContainer {
+    justify-content: space-between;
+}
+
+.signInButton {
+    width: 176px;
+    height: 38px;
+}
+
+.signUpButton {
+    width: 160px;
+    height: 38px;
+}
+
+.cardWrapper {
+    position: fixed;
+    border: "none";
+    box-shadow: "none";
+    width: 60%;
+    height: 220;
+    top: 50%;
+    left: 50%;
+    margin-left: -30%;
+}
+
+.graph {
+    position: absolute;
+    width: 214px;
+    height: 214px;
+    background: #BCE0FD 0% 0% no-repeat padding-box;
+    opacity: 1;
+    border-radius: 50%;
+}
+
+.innerGraph {
+    position: absolute;
+    background: #2699FB;
+    display: inline-block;
+    margin: 0 1em 1em 107px;
+    height: 214px;
+    width: 107px;
+    border-bottom-right-radius: 214px;
+    border-top-right-radius: 214px;
+}
+.innerGraph2 {
+    position: absolute;
+    transform: rotate(45deg);
+    background: #BCE0FD;
+    display: inline-block;
+    margin: 92px 1em 1em -36px;
+    width: 214px;
+    height: 107px;
+    border-bottom-left-radius: 214px;
+    border-bottom-right-radius: 214px;
+}
+
+.paper {
+    margin-left: 400px;
+}
