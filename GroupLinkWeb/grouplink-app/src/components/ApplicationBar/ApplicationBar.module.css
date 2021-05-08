@@ -1,0 +1,13 @@
+.title {
+    flex-grow: 1
+}
+
+.signInButton {
+    width: 140px;
+    height: 24px;
+}
+
+.signUpButton {
+    width: 140px;
+    height: 24px;
+}
