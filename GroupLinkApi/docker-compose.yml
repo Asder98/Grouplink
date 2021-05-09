@@ -1,0 +1,15 @@
+version: '3'
+services:
+  ms-sql-server:
+    image: microsoft/mssql-server-windows-developer
+    environment: 
+      ACCEPT_EULA: "Y" 
+      SA_PASSWORD: "Password_01"
+    ports:
+      - "1433:1433"
+  grouplinkapi:
+    build: .
+    environment: 
+      DBServer: "ms-sql-server"
+    ports:
+      - "8080:80"
