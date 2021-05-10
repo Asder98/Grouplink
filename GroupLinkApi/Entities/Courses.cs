@@ -25,8 +25,6 @@ namespace Entities
         public string courseCode { get; set; }
         [MaxLength(20)]
         public string groupMixingType { get; set; }
-        [JsonIgnore]
-        public int  idClassSchedule { get; set; }
 
         [ForeignKey(nameof(idClassSchedule)), JsonIgnore]
         public virtual ClassSchedules ClassSchedules { get; set; }
