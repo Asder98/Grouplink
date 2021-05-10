@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  ms-sql-server:
+    image: microsoft/mssql-server-windows-developer
+    environment: 
+      ACCEPT_EULA: "Y" 
+      SA_PASSWORD: "Password_01"
+    ports:
+      - "1433:1433"
+  grouplinkapi:
+    build: ./GroupLinkApi
+    environment: 
+      DBServer: "ms-sql-server"
+    ports:
+      - "8080:80"
+    depends_on: 
+      - ms-sql-server
+
+  grouplink-web:
+    container_name: grouplink-web
+    build: ./GroupLinkWeb/grouplink-app
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - 3001:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on: 
+      - grouplinkapi
+
+
+
+
