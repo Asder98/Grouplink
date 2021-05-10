@@ -3,7 +3,6 @@ using GroupLinkApi.Database.Repositories.ClassScheduleRepository;
 using GroupLinkApi.Database.Repositories.CourseRepository;
 using GroupLinkApi.Database.Repositories.LectureRepository;
 using GroupLinkApi.Database.Repositories.UserCourseRepository;
-using GroupLinkApi.Database.Repositories.UserRepository;
 using GroupLinkApi.Database.Repositories;
 using GroupLinkApi.Interfaces;
 using IdentityServer4.AccessTokenValidation;

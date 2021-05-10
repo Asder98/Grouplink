@@ -8,8 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GroupLinkApi.Database.Repositories.UserRepository;
 using GroupLinkApi.Database.Repositories.UserCourseRepository;
+using GroupLinkApi.Database.Repositories;
 
 namespace GroupLinkApi.Services
 {

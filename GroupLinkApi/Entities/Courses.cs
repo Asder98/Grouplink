@@ -16,7 +16,6 @@ namespace Entities
         [ForeignKey(nameof(idLecturer)), JsonIgnore]
         public virtual Lecturers Lecturers { get; set; }
 
-        public int idClassSchedule { get; set; }
         [MaxLength(50)]
         public string courseName { get; set; }
         [MaxLength(10)]
