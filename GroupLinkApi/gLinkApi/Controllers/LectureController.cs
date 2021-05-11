@@ -21,9 +21,14 @@ namespace GroupLinkApi.Controllers
             _lectureRepository = lectureRepository;
         }
 
-        // POST: LectureController/Create
+        /// <summary>
+        /// Metoda tworzy nowego prowadzacego na podstawie dostarczonego obiektu
+        /// </summary>
+        /// <param name="lecturers"></param>
+        /// <returns></returns>
+        [Authorize]
         [HttpPost]
-        //[Authorize]
+        // POST: LectureController/Create
         public IActionResult Create(Lecturers lecturers)//standard entity without id
         {
             try
@@ -40,7 +45,11 @@ namespace GroupLinkApi.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Metoda zwraca liste prowadzacych na podstawie podanego imienia
+        /// </summary>
+        /// <param name="name">parametr okreslajacy imie prowadzacego</param>
+        /// <returns>Lista prowadzacych</returns>
         [Route("ByName")]
         [HttpGet]
         public async Task<List<Lecturers>> GetByName(string name)
@@ -48,6 +57,11 @@ namespace GroupLinkApi.Controllers
             return await _lectureRepository.GetLecturersByName(name);
         }
 
+        /// <summary>
+        /// Metoda zwraca liste prowadzacych na podstawie podanego nazwiska
+        /// </summary>
+        /// <param name="name">parametr okreslajacy nazwisko prowadzacego</param>
+        /// <returns>Lista prowadzacych</returns>
         [Route("BySurame")]
         [HttpGet]
         public async Task<List<Lecturers>> GetBySurame(string surname)
