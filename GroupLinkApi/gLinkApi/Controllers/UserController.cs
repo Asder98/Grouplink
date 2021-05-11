@@ -20,6 +20,12 @@ namespace GroupLinkApi.Controllers
             _userService = userService;
         }
 
+        /// <summary>
+        /// Metoda odpowiedzialna za logowanie.
+        /// Po podaniu w modelu loginu i hasla osoby istniejacej w bazie zwraca dodatkowo jego dane oraz token do pozniejszej autentyfikacji
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>AuthenticateResponse</returns>
         [HttpPost("authenticate")]
         public IActionResult Authenticate(AuthenticateRequest model)
         {
@@ -31,7 +37,12 @@ namespace GroupLinkApi.Controllers
             return Ok(response);
         }
         
-
+        /// <summary>
+        /// Metoda odpowiedzialna za rejstracje uzytkownika.
+        /// Sprawdza czy podane dane sa spojne(haslo) oraz czy nie istnieje osoba w bazie o takich samych danych
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("register")]
         public IActionResult Register(RegisterModel model)

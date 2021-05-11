@@ -144,6 +144,61 @@ namespace GroupLinkApi.Services
                 return false;
         }
 
+        public bool AssignCourse(CourseModel courseModel)
+        {
+            ClassSchedules classSchedules = new ClassSchedules
+            {
+                dayOfTheWeek = courseModel.dayOfTheWeek,
+                startTime = courseModel.startTime,
+                endTime = courseModel.endTime,
+                type = courseModel.type
+            };
+
+            Lecturers lecturers = new Lecturers
+            {
+                name = courseModel.lecturerName,
+                surname = courseModel.lecturerSurname,
+                email = courseModel.lecturerEmail
+            };
+
+            //get id
+            int idClassSchedule = _classScheduleRepository.GetId(classSchedules);
+            if (idClassSchedule == 0)
+                return false;
+
+            //get id
+            int idLecturer = _lectureRepository.GetId(lecturers);
+            if (idLecturer == 0)
+                return false;
+
+            Courses courses = new Courses()
+            {
+                idLecturer = idLecturer,
+                groupCode = courseModel.groupCode,
+                courseCode = courseModel.courseCode,
+                groupMixingType = courseModel.groupMixingType,
+                idClassSchedule = idClassSchedule
+            };
+
+            var courseFromDB = _courseRepository.GetCourse(courses);
+
+
+            if (courseFromDB != null)
+            {
+                var idUser = _userRepository.GetUserId(courseModel.userLogin);
+
+                var res = _userCourseRepository.Add(new UsersCourses
+                {
+                    idCourse = courseFromDB.idCourse,
+                    idUser = idUser
+                });
+
+                return res.Result;
+            }
+            else
+                return false;
+        }
+
         public async Task<List<CourseModel>> GetCoursesByLogin(string login)
         {
             List<UsersCourses> usersCourses = await _userCourseRepository.GetCoursesByLogin(login);

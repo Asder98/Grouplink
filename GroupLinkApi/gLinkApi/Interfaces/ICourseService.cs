@@ -11,6 +11,7 @@ namespace GroupLinkApi.Interfaces
     {
         bool IsCourseExist(CourseModel courseModelToCheck);
         bool AddCourse(CourseModel courseModel);
+        bool AssignCourse(CourseModel courseModel);
         Task<List<CourseModel>> GetCoursesByLogin(string login);
         Task<List<CourseModel>> UserCourseByFilter(CourseModel courseModel);
         Task<List<CourseModel>> CoursesByFilter(CourseModel courseModel);
