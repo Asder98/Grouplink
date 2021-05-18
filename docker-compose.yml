@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   ms-sql-server:
-    image: microsoft/mssql-server-windows-developer
+    image: mcr.microsoft.com/mssql/server
     environment: 
       ACCEPT_EULA: "Y" 
       SA_PASSWORD: "Password_01"
@@ -21,8 +21,8 @@ services:
     container_name: grouplink-web
     build: ./GroupLinkWeb/grouplink-app
     volumes:
-      - '.:/app'
-      - '/app/node_modules'
+      - '.:/GroupLinkWeb/grouplink-app/usr/src/app'
+      - '/GroupLinkWeb/grouplink-app/usr/src/app/node_modules'
     ports:
       - 3001:3000
     environment:

@@ -2,16 +2,16 @@
 FROM node:15.11.0-alpine3.10
 
 # set working directory
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+# add `/usr/src/app/app/node_modules/.bin` to $PATH
+# ENV PATH /usr/src/app/app/node_modules/.bin:$PATH
 
 # install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install --silent
-
+COPY package*.json ./
+# COPY package-lock.json ./
+RUN npm install 
+# --silent
 # add app
 COPY . ./
 
