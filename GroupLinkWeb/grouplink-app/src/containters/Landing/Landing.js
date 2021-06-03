@@ -1,10 +1,11 @@
 import React from 'react'
 import styles from './Landing.module.css';
 import { AppBar, Toolbar, Typography, Button, Container, Card, Box, Paper } from '@material-ui/core';
+import {useHistory} from 'react-router-dom'
 
 const StartPage = ({match}) => {
-    console.log(match);
-    
+    // console.log(match);
+    let history = useHistory();
     return (
         <div>
         <Box display="flex" alignItems="center" flexWrap="nowrap" justifyContent="space-between" className={styles.cardWrapper}>
@@ -23,13 +24,13 @@ const StartPage = ({match}) => {
             </Typography>
             <Box display="flex" flexDirection="row" mt={1}>
               <Box mr={2} >
-                <Button className={styles.signInButton} color="secondary" variant="outlined">
+                <Button onClick={() => history.push('/login')} className={styles.signInButton} color="secondary" variant="outlined">
                     <Typography variant="button" color="primary">
                         Zaloguj się
                     </Typography>
                 </Button>
               </Box>
-              <Button className={styles.signUpButton} color="primary" variant="contained">
+              <Button onClick={() => history.push('/register')} className={styles.signUpButton} color="primary" variant="contained">
                   <Typography variant="button" color="inherit">
                       Utwórz konto
                   </Typography>
