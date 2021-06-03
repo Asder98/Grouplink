@@ -32,6 +32,7 @@ namespace GroupLinkApi.Services
         {
             var existCourse = _courseRepository.GetCourse(new Courses
             {
+                courseName = courseModelToCheck.courseName,
                 groupCode = courseModelToCheck.groupCode,
                 courseCode = courseModelToCheck.courseCode,
                 groupMixingType = courseModelToCheck.groupMixingType
@@ -107,6 +108,7 @@ namespace GroupLinkApi.Services
             Courses courses = new Courses()
             {
                 idLecturer = idLecturer,
+                courseName = courseModel.courseName,
                 groupCode = courseModel.groupCode,
                 courseCode = courseModel.courseCode,
                 groupMixingType = courseModel.groupMixingType,
@@ -172,6 +174,7 @@ namespace GroupLinkApi.Services
             Courses courses = new Courses()
             {
                 idLecturer = idLecturer,
+                courseName = courseModel.courseName,
                 groupCode = courseModel.groupCode,
                 courseCode = courseModel.courseCode,
                 groupMixingType = courseModel.groupMixingType,
@@ -209,6 +212,8 @@ namespace GroupLinkApi.Services
                 courseModel.Add(new CourseModel
                 {
                     userLogin = login,
+                    idCourse = userCourses.Courses.idCourse,
+                    courseName = userCourses.Courses.courseName,
                     groupCode = userCourses.Courses.groupCode,
                     courseCode = userCourses.Courses.courseCode,
                     groupMixingType = userCourses.Courses.groupMixingType,
@@ -238,6 +243,8 @@ namespace GroupLinkApi.Services
                 {
                     userLogin = course.Users.login,
 
+                    idCourse = course.Courses.idCourse,
+                    courseName = course.Courses.courseName,
                     groupCode = course.Courses.groupCode,
                     courseCode = course.Courses.courseCode,
                     groupMixingType = course.Courses.groupMixingType,
@@ -268,6 +275,8 @@ namespace GroupLinkApi.Services
                 {
                     userLogin = "",
 
+                    idCourse = course.idCourse,
+                    courseName = course.courseName,
                     groupCode = course.groupCode,
                     courseCode = course.courseCode,
                     groupMixingType = course.groupMixingType,

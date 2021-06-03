@@ -34,7 +34,7 @@ namespace GroupLinkApi.Controllers
         /// </summary>
         /// <param name="newCourseModel"></param>
         /// <returns>Wiadomosc o problemie lub potwierdzenie wykonania poprawnej operacji</returns>
-        [Authorize]
+        //[Authorize]
         [HttpPost("CreateNewCourse")]
         // POST: CourseController/Create
         public ActionResult CreateCourse(CourseModel newCourseModel)

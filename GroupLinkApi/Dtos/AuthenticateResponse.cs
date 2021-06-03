@@ -4,16 +4,16 @@ namespace Dtos
 {
     public class AuthenticateResponse
     {
-        public string name { get; set; }
-        public string surname { get; set; }
+        public int idUser { get; set; }
+        public string email { get; set; }
         public string login { get; set; }
         public string Token { get; set; }
 
 
         public AuthenticateResponse(Users user, string token)
         {
-            name = user.name;
-            surname = user.surname;
+            idUser = user.idUser;
+            email = user.email;
             login = user.login;
             Token = token;
         }
