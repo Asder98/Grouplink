@@ -25,7 +25,6 @@ const Layout = ({ children }) => {
             </Typography>
           {isLoggedIn ?
             <div className={classes.buttonsWrapper}>
-
               <Box mr={2}>
                 <Button className={styles.signInButton} color="inherit" variant="outlined">
                   <Typography variant="button">
