@@ -295,11 +295,42 @@ namespace GroupLinkApi.Services
             return cousesModels;
         }
 
+        public CourseModel GetCourseById(int id)
+        {
+            var courseDB = _courseRepository.GetCourse(id);
+
+            if (courseDB != null)
+            {
+                var course = new CourseModel
+                {
+                    userLogin = "",
+
+                    idCourse = courseDB.idCourse,
+                    courseName = courseDB.courseName,
+                    groupCode = courseDB.groupCode,
+                    courseCode = courseDB.courseCode,
+                    groupMixingType = courseDB.groupMixingType,
+
+                    dayOfTheWeek = courseDB.ClassSchedules.dayOfTheWeek,
+                    startTime = courseDB.ClassSchedules.startTime,
+                    endTime = courseDB.ClassSchedules.endTime,
+                    type = courseDB.ClassSchedules.type,
+
+                    lecturerName = courseDB.Lecturers.name,
+                    lecturerSurname = courseDB.Lecturers.surname,
+                    lecturerEmail = courseDB.Lecturers.email
+                };
+
+                return course;
+            }
+            else
+                return null;
+
+        }
 
 
 
-
-}
+    }
 
 
 }

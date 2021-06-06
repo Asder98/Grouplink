@@ -129,5 +129,19 @@ namespace GroupLinkApi.Database.Repositories.CourseRepository
             return courses;
         }
 
+
+        public Courses GetCourse(int id)
+        {
+            Courses courses = new Courses();
+            if (DatabaseCorrectness().Result)
+            {
+                courses = _context.Courses
+                            .Include(x => x.Lecturers)
+                            .Include(x => x.ClassSchedules)
+                            .Where(x => x.idCourse == id)
+                            .FirstOrDefault();
+            }
+            return courses;
+        }
     }
 }

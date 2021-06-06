@@ -15,5 +15,6 @@ namespace GroupLinkApi.Interfaces
         Task<List<CourseModel>> GetCoursesByLogin(string login);
         Task<List<CourseModel>> UserCourseByFilter(CourseModel courseModel);
         Task<List<CourseModel>> CoursesByFilter(CourseModel courseModel);
+        CourseModel GetCourseById(int id);
     }
 }

@@ -139,6 +139,12 @@ namespace GroupLinkApi.Controllers
         {
             return await _courseService.CoursesByFilter(courseModelToFilter);
         }
+        [Authorize]
+        [HttpGet()]
+        public CourseModel GetCoursesById(int id)
+        {
+            return _courseService.GetCourseById(id);
+        }
 
     }
 }
