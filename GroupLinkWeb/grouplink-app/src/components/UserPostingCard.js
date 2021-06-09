@@ -7,23 +7,20 @@ import {
   Typography,
 } from "@material-ui/core";
 
-const BasicCard = ({details}) => (
+const UserPostingCard = ({details}) => (
   <Card sx={{ height: "100%" }}>
     <CardContent>
       <Box m={1} display="flex" alignItems="center" flexDirection="row">
         <Grid container spacing={3} sx={{ justifyContent: "space-between" }}>
           <Grid item>
             <Typography color="textSecondary" variant="body1">
-              {details.login}
+              {details.groupCode}
             </Typography>
             <Typography color="textPrimary" variant="h5">
-              {details.title}
-            </Typography>
-            <Typography color="textSecondary" variant="body1">
-              Informacje:
+              {details.courseName}
             </Typography>
             <Typography color="textPrimary" variant="caption">
-              {details.content}
+              {details.courseCode}
             </Typography>
           </Grid>
         </Grid>
@@ -36,7 +33,7 @@ const BasicCard = ({details}) => (
         >
           <Box width={120}>
           <Button color="primary" variant="contained">
-            Napisz wiadomość
+            Edytuj
           </Button>
           </Box>
 
@@ -46,4 +43,4 @@ const BasicCard = ({details}) => (
   </Card>
 );
 
-export default BasicCard;
+export default UserPostingCard;

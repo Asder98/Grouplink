@@ -31,6 +31,9 @@ const Layout = ({ children }) => {
     dispatch(showSignIn())
     history.push('/register');  
   }
+  const onClickMyPostings = () => {
+    history.push('/mypostings');  
+  }
 
   // const isLoggedIn = false; // do ustawiania przyciskow w appbar
   return (
@@ -43,7 +46,7 @@ const Layout = ({ children }) => {
           {isAuth ?
             <div className={classes.buttonsWrapper}>
               <Box mr={2}>
-                <Button className={styles.signInButton} color="inherit" variant="outlined">
+                <Button onClick={() => onClickMyPostings()} className={styles.signInButton} color="inherit" variant="outlined">
                   <Typography variant="button">
                     Twoje ogłoszenia
                   </Typography>
