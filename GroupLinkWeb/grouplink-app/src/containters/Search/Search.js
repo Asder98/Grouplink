@@ -14,10 +14,13 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { useSelector } from "react-redux";
 
+import SearchCard from "../../components/SearchCard";
+
 const Search = ({ match }) => {
   console.log(match);
   const [search, setSearch] = useState("");
   const [groups, setGroups] = useState([]);
+  const [noResults, setNoResult] = useState(false);
   const token = useSelector((state) => state.auth.token);
 
   const useStyles = makeStyles((theme) => ({
@@ -70,6 +73,11 @@ const Search = ({ match }) => {
       .then((res) => {
         console.log("register res", res);
         setGroups(res.data);
+        if (res.data.length === 0) {
+          setNoResult(true);
+        } else {
+          setNoResult(false);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -80,7 +88,7 @@ const Search = ({ match }) => {
 
   return (
     <Container maxWidth="md" className={classes.Container}>
-      <Box className={classes.searchbox}>
+      <Box className={classes.searchbox} mt={groups.length === 0 ? "50%" : 2}>
         <TextField
           variant="outlined"
           margin="normal"
@@ -111,6 +119,25 @@ const Search = ({ match }) => {
           Szukaj
         </Button>
       </Box>
+      {noResults ? (
+        <Box mb={2} mt={2}>
+          <Typography color="error" variant="h6">
+            Brak wyników!
+          </Typography>
+        </Box>
+      ) : null}
+      {groups.length === 0 ? null : (
+        <Box mb={2} mt={2}>
+          <Typography variant="h6">Wyniki wyszukiwania:</Typography>
+        </Box>
+      )}
+      <Grid container spacing={3}>
+        {groups.map((p, i) => (
+          <Grid item lg={12} sm={12} xl={12} xs={12} key={i}>
+            <SearchCard details={p} />
+          </Grid>
+        ))}
+      </Grid>
     </Container>
   );
 };
