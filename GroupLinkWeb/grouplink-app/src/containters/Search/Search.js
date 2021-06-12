@@ -121,7 +121,7 @@ const Search = ({ match }) => {
       </Box>
       {noResults ? (
         <Box mb={2} mt={2}>
-          <Typography color="error" variant="h6">
+          <Typography color="error">
             Brak wyników!
           </Typography>
         </Box>
