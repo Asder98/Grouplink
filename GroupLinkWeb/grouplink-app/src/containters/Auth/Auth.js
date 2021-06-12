@@ -61,13 +61,6 @@ const Auth = ({ match }) => {
     },
   }));
 
-  const zmienny = "testy2";
-  const testowyUser = {
-    login: zmienny,
-    password: zmienny,
-    confirmPassword: zmienny,
-  };
-
   const register = ({ login, email, password, confirmPassword }) => {
     const body = {
       login,
@@ -142,8 +135,10 @@ const Auth = ({ match }) => {
 
   const formik = useFormik({
     initialValues: {
-      email: "foobar@example.com",
-      password: "foobar",
+      login: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
     },
     validationSchema: isSignIn ? validationSchemaSignUp : validationSchemaLogIn,
     onSubmit: (values) => {
