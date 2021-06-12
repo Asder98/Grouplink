@@ -10,8 +10,10 @@ import StartPage from "./containters/StartPage/StartPage";
 import Landing from "./containters/Landing/Landing";
 import Search from "./containters/Search/Search";
 import Group from "./containters/Group/Group";
+import NewGroup from "./containters/NewGroup/NewGroup";
 import Posting from "./containters/Posting/Posting";
 import MyPostings from "./containters/MyPostings/MyPostings";
+import NewPosting from "./containters/NewPosting/NewPosting";
 import Layout from "./hoc/Layout/Layout";
 
 function App() {
@@ -66,10 +68,10 @@ function App() {
       <Switch>
         <Route path="/start" component={StartPage} />
         <Route path="/search/:id" component={Search} />
-        <Route path="/group/create" component={Group} />
+        <Route path="/group/create" component={NewGroup} />
         <Route path="/group/:id" component={Group} />
         <Route path="/posting/:id/edit" component={Posting} />
-        <Route path="/posting/create" component={Posting} />
+        <Route path="/posting/create" component={NewPosting} />
         <Route path="/posting/:id" component={Posting} />
         <Route path="/mypostings" component={MyPostings} />
         <Route path="/" component={Search} />
