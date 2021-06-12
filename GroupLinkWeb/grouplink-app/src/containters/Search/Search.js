@@ -7,21 +7,22 @@ import {
   Typography,
   TextField,
   Button,
-  Card,
 } from "@material-ui/core";
 import axios from "axios";
 import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import SearchCard from "../../components/SearchCard";
 
 const Search = ({ match }) => {
-  console.log(match);
   const [search, setSearch] = useState("");
   const [groups, setGroups] = useState([]);
   const [noResults, setNoResult] = useState(false);
   const token = useSelector((state) => state.auth.token);
+
+  const history = useHistory();
 
   const useStyles = makeStyles((theme) => ({
     submit: {
@@ -29,6 +30,13 @@ const Search = ({ match }) => {
       borderRadius: 25,
       height: 50,
       maxWidth: 100,
+      marginLeft: 5,
+    },
+    add: {
+      margin: theme.spacing(2, 0, 1),
+      borderRadius: 25,
+      height: 50,
+      maxWidth: 160,
       marginLeft: 5,
     },
     searchbox: {
@@ -121,9 +129,7 @@ const Search = ({ match }) => {
       </Box>
       {noResults ? (
         <Box mb={2} mt={2}>
-          <Typography color="error">
-            Brak wyników!
-          </Typography>
+          <Typography>Brak wyników!</Typography>
         </Box>
       ) : null}
       {groups.length === 0 ? null : (
@@ -138,6 +144,21 @@ const Search = ({ match }) => {
           </Grid>
         ))}
       </Grid>
+      {noResults || groups.length !== 0 ? (
+        <Box mb={2} mt={4} display="flex" alignItems="center" flexDirection="column">
+          <Typography>Nie znalazłeś swojej grupy?</Typography>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.add}
+            onClick={() => history.push(`/creategroup`)}
+          >
+            Dodaj grupę
+          </Button>
+        </Box>
+      ) : null}
     </Container>
   );
 };

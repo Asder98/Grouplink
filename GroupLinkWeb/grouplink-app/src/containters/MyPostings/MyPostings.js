@@ -6,26 +6,54 @@ import {useSelector, useDispatch} from 'react-redux'
 import UserPostingCard from "../../components/UserPostingCard";
 
 const Group = ({ match }) => {
-  const userId = useSelector((state) => state.auth.userId);
+  const userLogin = useSelector((state) => state.auth.login);
   const [postings, setPostings] = useState([]);
+  const [noResults, setNoResult] = useState(false);
+  const token = useSelector((state) => state.auth.token);
 
   console.log(postings);
 
   const getListOfPostings = () => {
+    const config = {
+      headers: { Authorization: `bearer ${token}` },
+    };
+    const body = {
+      userLogin,
+    };
     axios
-      .get(`http://localhost:8080/api/Notification/${userId}`)
+      .post(
+        "http://localhost:8080/api/Course/GetUserCoursesFiltredData",
+        body,
+        config
+      )
       .then((res) => {
+        console.log("register res", res);
         setPostings(res.data);
+        if (res.data.length === 0) {
+          setNoResult(true);
+        } else {
+          setNoResult(false);
+        }
       })
       .catch((err) => {
         console.log(err);
         alert("Błąd pobierania listy ogloszen");
       });
+
+    // axios
+    //   .get(`http://localhost:8080/api/Notification/${userLogin}`)
+    //   .then((res) => {
+    //     setPostings(res.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     alert("Błąd pobierania listy ogloszen");
+    //   });
   };
 
   useEffect(() => {
     getListOfPostings();
-  }, [userId]);
+  }, [userLogin]);
 
   return (
     <Box
