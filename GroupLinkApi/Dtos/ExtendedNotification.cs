@@ -2,6 +2,11 @@
 {
     public class ExtendedNotification
     {
+        public int idNotification { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
+        public string Login { get; set; }
+        public string Email { get; set; }
         public string GroupCode { get; set; }
         public string CourseName { get; set; }
         public string LecturerName { get; set; }

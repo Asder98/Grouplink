@@ -43,10 +43,16 @@ namespace GroupLinkApi.Services
                        join courses in _context.Courses on notifications.idCourse equals courses.idCourse
                        join lecturers in _context.Lecturers on courses.idLecturer equals lecturers.idLecturer
                        join classSchedules in _context.ClassSchedules on courses.idClassSchedule equals classSchedules.idClassSchedule
+                       join users in _context.Users on notifications.idUser equals users.idUser
                        where notifications.idUser == idUser 
                        select new ExtendedNotification
                        {
                            CourseName = courses.courseName,
+                           idNotification = notifications.idNotification,
+                           Title = notifications.title,
+                           Content = notifications.content,
+                           Email = users.email,
+                           Login = users.login,
                            CourseCode = courses.courseCode,
                            GroupCode = courses.groupCode,
                            Amount = notifications.amount,
@@ -54,7 +60,7 @@ namespace GroupLinkApi.Services
                            StartTime = classSchedules.startTime,
                            EndTime = classSchedules.endTime,
                            LecturerName = string.Format("{0} {1}", lecturers.name, lecturers.surname),
-                           ScheduleType = classSchedules.type
+                           ScheduleType = classSchedules.type,
                        }).ToList();
 
             return res;
