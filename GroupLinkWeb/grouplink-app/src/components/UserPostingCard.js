@@ -6,41 +6,72 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
 
-const UserPostingCard = ({details}) => (
-  <Card sx={{ height: "100%" }}>
-    <CardContent>
-      <Box m={1} display="flex" alignItems="center" flexDirection="row">
-        <Grid container spacing={3} sx={{ justifyContent: "space-between" }}>
-          <Grid item>
-            <Typography color="textSecondary" variant="body1">
-              {details.groupCode}
-            </Typography>
-            <Typography color="textPrimary" variant="h5">
-              {details.courseName}
-            </Typography>
-            <Typography color="textPrimary" variant="caption">
-              {details.courseCode}
-            </Typography>
+const UserPostingCard = ({ details }) => {
+  const history = useHistory();
+
+  const useStyles = makeStyles((theme) => ({
+    add: {
+      margin: theme.spacing(2, 0, 1),
+      borderRadius: 25,
+      height: 50,
+      maxWidth: 200,
+      marginLeft: 5,
+    },
+  }));
+
+  const classes = useStyles();
+
+  console.log(details)
+
+  return (
+    <Card sx={{ height: "100%" }}>
+      <CardContent onClick={() => history.push(`/group/${details.idCourse}`)}>
+        <Box m={1} display="flex" alignItems="center" flexDirection="row">
+          <Grid container spacing={3} sx={{ justifyContent: "space-between" }}>
+            <Grid item>
+              <Typography color="textSecondary" variant="body1">
+                {details.groupCode}
+              </Typography>
+              <Typography color="textPrimary" variant="h5">
+                {details.courseName}
+              </Typography>
+              <Typography color="textPrimary" variant="caption">
+                {details.courseCode}
+              </Typography>
+            </Grid>
           </Grid>
-        </Grid>
-        <Box
-          sx={{
-            pt: 2,
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <Box width={120}>
-          <Button color="primary" variant="contained">
+          <Box
+            sx={{
+              pt: 2,
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Box width={120}>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.add}
+            onClick={() =>
+              history.push({
+                pathname: `/createposting`,
+                state: { type: "edit", groupInfo: details },
+              })
+            }
+          >
             Edytuj
           </Button>
+            </Box>
           </Box>
-
         </Box>
-      </Box>
-    </CardContent>
-  </Card>
-);
+      </CardContent>
+    </Card>
+  );
+};
 
 export default UserPostingCard;

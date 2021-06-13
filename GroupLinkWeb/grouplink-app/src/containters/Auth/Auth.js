@@ -77,7 +77,8 @@ const Auth = ({ match }) => {
         history.push("/");
       })
       .catch((err) => {
-        console.log(err);
+        console.log("Error", err.response);
+        alert("Błędne dane konta:", err.response.data.message);
       });
   };
 
@@ -94,7 +95,7 @@ const Auth = ({ match }) => {
         history.push("/");
       })
       .catch((err) => {
-        console.log(err);
+        console.log("Error", err.response);
         alert("Błędne dane logowania");
       });
   };
