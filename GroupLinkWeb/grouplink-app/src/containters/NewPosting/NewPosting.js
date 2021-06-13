@@ -21,6 +21,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import red from '@material-ui/core/colors/red';
 
 const NewPosting = ({ match, location }) => { 
     const history = useHistory();
@@ -56,6 +57,8 @@ const NewPosting = ({ match, location }) => {
             },
         },
     }));
+
+    const deleteRedColor = red[500]
 
     // console.log(match)
     const classes = useStyles();
@@ -102,6 +105,16 @@ const NewPosting = ({ match, location }) => {
                 });
         },
     });
+    
+    const deletePosting = (postingID) => {
+        if (window.confirm('Czy na pewno chcesz usunąć to ogłoszenie?')) {
+            // Save it!
+            console.log('Usunięto!');
+          } else {
+            // Do nothing!
+            console.log('Wstrzymano!');
+          }
+    }
 
     return (
         <Container maxWidth="xs">
@@ -158,6 +171,16 @@ const NewPosting = ({ match, location }) => {
                         Opublikuj ogłoszenie
                     </Button>
                 </form>
+                <Button
+                    type=""
+                    fullWidth
+                    variant="outlined"
+                    color="primary"
+                    className={classes.submit}
+                    onClick={() => deletePosting(11)}
+                >
+                    Usuń ogłoszenie
+                </Button>
                 <Button
                     type=""
                     fullWidth
