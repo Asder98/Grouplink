@@ -11,5 +11,6 @@ namespace GroupLinkApi.Database.Repositories.UserCourseRepository
     {
         Task<List<UsersCourses>> GetCoursesByLogin(string login);
         Task<List<UsersCourses>> GetAllUserCourseDataByFilter(CourseModel model);
+        Task<List<UsersCourses>> GetUserCourses(UsersCourses model);
     }
 }

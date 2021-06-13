@@ -32,6 +32,7 @@ namespace GroupLinkApi.Services
         {
             var existCourse = _courseRepository.GetCourse(new Courses
             {
+                courseName = courseModelToCheck.courseName,
                 groupCode = courseModelToCheck.groupCode,
                 courseCode = courseModelToCheck.courseCode,
                 groupMixingType = courseModelToCheck.groupMixingType
@@ -107,6 +108,7 @@ namespace GroupLinkApi.Services
             Courses courses = new Courses()
             {
                 idLecturer = idLecturer,
+                courseName = courseModel.courseName,
                 groupCode = courseModel.groupCode,
                 courseCode = courseModel.courseCode,
                 groupMixingType = courseModel.groupMixingType,
@@ -142,6 +144,62 @@ namespace GroupLinkApi.Services
                 return false;
         }
 
+        public bool AssignCourse(CourseModel courseModel)
+        {
+            ClassSchedules classSchedules = new ClassSchedules
+            {
+                dayOfTheWeek = courseModel.dayOfTheWeek,
+                startTime = courseModel.startTime,
+                endTime = courseModel.endTime,
+                type = courseModel.type
+            };
+
+            Lecturers lecturers = new Lecturers
+            {
+                name = courseModel.lecturerName,
+                surname = courseModel.lecturerSurname,
+                email = courseModel.lecturerEmail
+            };
+
+            //get id
+            int idClassSchedule = _classScheduleRepository.GetId(classSchedules);
+            if (idClassSchedule == 0)
+                return false;
+
+            //get id
+            int idLecturer = _lectureRepository.GetId(lecturers);
+            if (idLecturer == 0)
+                return false;
+
+            Courses courses = new Courses()
+            {
+                idLecturer = idLecturer,
+                courseName = courseModel.courseName,
+                groupCode = courseModel.groupCode,
+                courseCode = courseModel.courseCode,
+                groupMixingType = courseModel.groupMixingType,
+                idClassSchedule = idClassSchedule
+            };
+
+            var courseFromDB = _courseRepository.GetCourse(courses);
+
+
+            if (courseFromDB != null)
+            {
+                var idUser = _userRepository.GetUserId(courseModel.userLogin);
+
+                var res = _userCourseRepository.Add(new UsersCourses
+                {
+                    idCourse = courseFromDB.idCourse,
+                    idUser = idUser
+                });
+
+                return res.Result;
+            }
+            else
+                return false;
+        }
+
         public async Task<List<CourseModel>> GetCoursesByLogin(string login)
         {
             List<UsersCourses> usersCourses = await _userCourseRepository.GetCoursesByLogin(login);
@@ -154,6 +212,8 @@ namespace GroupLinkApi.Services
                 courseModel.Add(new CourseModel
                 {
                     userLogin = login,
+                    idCourse = userCourses.Courses.idCourse,
+                    courseName = userCourses.Courses.courseName,
                     groupCode = userCourses.Courses.groupCode,
                     courseCode = userCourses.Courses.courseCode,
                     groupMixingType = userCourses.Courses.groupMixingType,
@@ -183,6 +243,8 @@ namespace GroupLinkApi.Services
                 {
                     userLogin = course.Users.login,
 
+                    idCourse = course.Courses.idCourse,
+                    courseName = course.Courses.courseName,
                     groupCode = course.Courses.groupCode,
                     courseCode = course.Courses.courseCode,
                     groupMixingType = course.Courses.groupMixingType,
@@ -213,6 +275,8 @@ namespace GroupLinkApi.Services
                 {
                     userLogin = "",
 
+                    idCourse = course.idCourse,
+                    courseName = course.courseName,
                     groupCode = course.groupCode,
                     courseCode = course.courseCode,
                     groupMixingType = course.groupMixingType,
@@ -231,11 +295,42 @@ namespace GroupLinkApi.Services
             return cousesModels;
         }
 
+        public CourseModel GetCourseById(int id)
+        {
+            var courseDB = _courseRepository.GetCourse(id);
+
+            if (courseDB != null)
+            {
+                var course = new CourseModel
+                {
+                    userLogin = "",
+
+                    idCourse = courseDB.idCourse,
+                    courseName = courseDB.courseName,
+                    groupCode = courseDB.groupCode,
+                    courseCode = courseDB.courseCode,
+                    groupMixingType = courseDB.groupMixingType,
+
+                    dayOfTheWeek = courseDB.ClassSchedules.dayOfTheWeek,
+                    startTime = courseDB.ClassSchedules.startTime,
+                    endTime = courseDB.ClassSchedules.endTime,
+                    type = courseDB.ClassSchedules.type,
+
+                    lecturerName = courseDB.Lecturers.name,
+                    lecturerSurname = courseDB.Lecturers.surname,
+                    lecturerEmail = courseDB.Lecturers.email
+                };
+
+                return course;
+            }
+            else
+                return null;
+
+        }
 
 
 
-
-}
+    }
 
 
 }

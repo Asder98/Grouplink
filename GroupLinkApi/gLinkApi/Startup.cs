@@ -28,10 +28,15 @@ namespace GroupLinkApi
 
             services.ConfigureServices();
 
+            var server = Configuration["DBServer"] ?? "ms-sql-server";
+            var port = Configuration["DBPort"] ?? "1433";
+            var user = Configuration["DBUser"] ?? "SA";
+            var password = Configuration["DBPassword"] ?? "Password_01";
+            var database = Configuration["Database"] ?? "GroupLinkDB";
 
             services.AddDbContext<GroupLinkContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("LocalDatabase"));
+                options.UseSqlServer($"Server={server},{port};Initial Catalog={database};User ID ={user};Password={password}");
             });
 
             services.AddSwaggerGen(c =>

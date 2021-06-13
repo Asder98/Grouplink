@@ -10,6 +10,8 @@ namespace Dtos
     {
         [Required, MaxLength(30)]
         public string login { get; set; }
+        [MaxLength(50)]
+        public string email { get; set; }
 
         [Required, MaxLength(20)]
         public string password { get; set; }

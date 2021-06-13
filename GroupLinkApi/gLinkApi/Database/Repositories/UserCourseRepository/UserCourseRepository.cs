@@ -42,6 +42,9 @@ namespace GroupLinkApi.Database.Repositories.UserCourseRepository
                 if (!string.IsNullOrEmpty(model.userLogin))
                     query = query.Where(x => x.Users.login.StartsWith(model.userLogin));
 
+                if (!string.IsNullOrEmpty(model.courseName))
+                    query = query.Where(x => x.Courses.courseName.StartsWith(model.courseName));
+
                 if (!string.IsNullOrEmpty(model.groupCode))
                     query = query.Where(x => x.Courses.groupCode.StartsWith(model.groupCode));
 
@@ -80,6 +83,19 @@ namespace GroupLinkApi.Database.Repositories.UserCourseRepository
             return courses;
         }
 
+        public async Task<List<UsersCourses>> GetUserCourses(UsersCourses model)
+        {
+            List<UsersCourses> usersCourses = new List<UsersCourses>();
+            if (DatabaseCorrectness().Result)
+            {
+                usersCourses = await _context.UsersCourses
+                    .Where(x => 
+                        x.idCourse == model.idCourse &&
+                        x.idUser == model.idUser)
+                .ToListAsync();
 
+            }
+            return usersCourses;
+        }
     }
 }

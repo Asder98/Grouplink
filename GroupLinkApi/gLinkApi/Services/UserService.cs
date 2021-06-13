@@ -34,11 +34,19 @@ namespace GroupLinkApi.Services
 
             if (user == null) 
                 return null;
+            else
+            {
+                if (string.IsNullOrEmpty(user.login) || string.IsNullOrEmpty(user.password))
+                {
+                    return null;
+                }
+                else
+                {
+                    var token = GenerateJwtToken(user);
 
-            var token = GenerateJwtToken(user);
-
-
-            return new AuthenticateResponse(user, token);
+                    return new AuthenticateResponse(user, token);
+                }
+            }
         }
 
 
@@ -53,12 +61,11 @@ namespace GroupLinkApi.Services
         }
         public bool AddUser(RegisterModel registerModel)
         {
-            //zobaczymy jakie dane będą podawane przy rejstracji
             var result = _userRepository.Add(new Users
             {
                 name = "",
                 surname = "",
-                email = "",
+                email = registerModel.email,
                 login = registerModel.login,
                 password = registerModel.password
             }) ;

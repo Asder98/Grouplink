@@ -14,5 +14,6 @@ namespace GroupLinkApi.Database.Repositories.CourseRepository
         int GetId(Courses courseToGet);
         Courses GetCourse(Courses courseData);
         Task<List<Courses>> GetAllCourseDataByFilter(CourseModel model);
+        Courses GetCourse(int id);
     }
 }

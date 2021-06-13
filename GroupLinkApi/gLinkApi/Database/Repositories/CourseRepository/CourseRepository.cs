@@ -16,7 +16,8 @@ namespace GroupLinkApi.Database.Repositories.CourseRepository
         public int GetId(Courses courseToGet)
         {
             Courses course = new Courses();
-            course = _context.Courses.Where(x => 
+            course = _context.Courses.Where(x =>
+                x.courseName == courseToGet.courseName &&
                 x.groupCode == courseToGet.groupCode &&
                 x.courseCode == courseToGet.courseCode &&
                 x.groupMixingType == courseToGet.groupMixingType).FirstOrDefault();
@@ -58,18 +59,25 @@ namespace GroupLinkApi.Database.Repositories.CourseRepository
             }
             return courses;
         }
-           
+
         public Courses GetCourse(Courses courseData)
         {
-            Courses course = new Courses();
-            course = _context.Courses
-                .Include(x => x.ClassSchedules)
-                .Include(x => x.Lecturers)
-                .Where(x => x.groupCode == courseData.groupCode &&
-                x.courseCode == courseData.courseCode &&
-                x.groupMixingType == courseData.groupMixingType).FirstOrDefault();
+            if (_context.Courses.Any())
+            {
+                Courses course = new Courses();
+                course = _context.Courses
+                    .Include(x => x.ClassSchedules)
+                    .Include(x => x.Lecturers)
+                    .Where(x => x.courseName == courseData.courseName &&
+                    x.groupCode == courseData.groupCode &&
+                    x.courseCode == courseData.courseCode &&
+                    x.groupMixingType == courseData.groupMixingType).FirstOrDefault();
 
-            return course;
+                return course;
+            }
+            else
+                return null;
+
         }
         public async Task<List<Courses>> GetAllCourseDataByFilter(CourseModel model)
         {
@@ -79,6 +87,9 @@ namespace GroupLinkApi.Database.Repositories.CourseRepository
                 var query = _context.Courses
                             .Include(x => x.Lecturers)
                             .Include(x => x.ClassSchedules).AsQueryable();
+
+                if (!string.IsNullOrEmpty(model.courseName))
+                    query = query.Where(x => x.courseName.StartsWith(model.courseName));
 
                 if (!string.IsNullOrEmpty(model.groupCode))
                     query = query.Where(x => x.groupCode.StartsWith(model.groupCode));
@@ -118,5 +129,19 @@ namespace GroupLinkApi.Database.Repositories.CourseRepository
             return courses;
         }
 
+
+        public Courses GetCourse(int id)
+        {
+            Courses courses = new Courses();
+            if (DatabaseCorrectness().Result)
+            {
+                courses = _context.Courses
+                            .Include(x => x.Lecturers)
+                            .Include(x => x.ClassSchedules)
+                            .Where(x => x.idCourse == id)
+                            .FirstOrDefault();
+            }
+            return courses;
+        }
     }
 }

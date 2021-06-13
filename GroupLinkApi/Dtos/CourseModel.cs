@@ -11,6 +11,9 @@ namespace Dtos
         public string userLogin { get; set; }
 
         //Course data
+        public int idCourse { get; set; }
+        [MaxLength(50)]
+        public string courseName { get; set; }
         [MaxLength(10)]
         public string groupCode { get; set; }
         [MaxLength(20)]
@@ -18,7 +21,7 @@ namespace Dtos
         [MaxLength(20)]
         public string groupMixingType { get; set; }
 
-        //ClassSchedule to check or create
+        //ClassSchedule
         [MaxLength(20)]
         public string dayOfTheWeek { get; set; }
         [MaxLength(10)]
@@ -28,7 +31,7 @@ namespace Dtos
         [MaxLength(5)]
         public string type { get; set; }
 
-        //Lecturer to check or create
+        //Lecturer
         [MaxLength(20)]
         public string lecturerName { get; set; }
         [MaxLength(20)]

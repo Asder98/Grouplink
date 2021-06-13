@@ -11,37 +11,37 @@ USE GroupLinkDB;
 -- Table Users 
 CREATE TABLE Users (
 	idUser int NOT NULL PRIMARY KEY IDENTITY(1,1),
-	name varchar(20) NOT NULL,
-	surname varchar(20) NOT NULL,
-	email varchar(50) NOT NULL,
-	login varchar(20) NOT NULL,
-	password varchar(30) NOT NULL,
+	name nvarchar(20) NOT NULL,
+	surname nvarchar(20) NOT NULL,
+	email nvarchar(50) NOT NULL,
+	login nvarchar(20) NOT NULL,
+	password nvarchar(30) NOT NULL,
 )
 
 -- Table Lecturers 
 CREATE TABLE Lecturers (
 	idLecturer int NOT NULL PRIMARY KEY IDENTITY(1,1),
-	name varchar(20) NOT NULL,
-	surname varchar(20) NOT NULL,
-	email varchar(50) NULL,
+	name nvarchar(20) NOT NULL,
+	surname nvarchar(20) NOT NULL,
+	email nvarchar(50) NULL,
 )
 
 CREATE TABLE ClassSchedules (
 	idClassSchedule int NOT NULL PRIMARY KEY IDENTITY(1,1), 
-	dayOfTheWeek varchar(20) NOT NULL,
-	startTime varchar(10) NOT NULL,
-	endTime varchar(10) NOT NULL,
-	type varchar(5) NOT NULL
+	dayOfTheWeek nvarchar(20) NOT NULL,
+	startTime nvarchar(10) NOT NULL,
+	endTime nvarchar(10) NOT NULL,
+	type nvarchar(5) NOT NULL
 )
 
 -- Table Courses
 CREATE TABLE Courses (
 	idCourse int NOT NULL PRIMARY KEY IDENTITY(1,1),
 	idLecturer int NOT NULL,
-	courseName varchar(50) NOT NULL,
-	groupCode varchar(10) NOT NULL,
-	courseCode varchar(20) NULL,
-	groupMixingType varchar(10) NULL,
+	courseName nvarchar(50) NOT NULL,
+	groupCode nvarchar(10) NOT NULL,
+	courseCode nvarchar(20) NULL,
+	groupMixingType nvarchar(10) NULL,
 	idClassSchedule int NOT NULL
 
 	CONSTRAINT FK_CourseLecturer FOREIGN KEY (idLecturer)
@@ -69,9 +69,9 @@ CREATE TABLE Notifications (
 	idNotification int NOT NULL PRIMARY KEY IDENTITY(1,1),
 	idUser int NOT NULL,
 	idCourse int NOT NULL,
-	title varchar(40) NULL,
-	content varchar(255) NULL,
-	type varchar(20),
+	title nvarchar(40) NULL,
+	content nvarchar(255) NULL,
+	type nvarchar(20),
 	amount int NULL
 
 	CONSTRAINT FK_UserNotification FOREIGN KEY (idUser) 
