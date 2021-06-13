@@ -13,10 +13,11 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import AddIcon from '@material-ui/icons/Add';
 
 import SearchCard from "../../components/SearchCard";
 
-const Search = ({ match }) => {
+const Search = ({ match, location }) => {
   const [search, setSearch] = useState("");
   const [groups, setGroups] = useState([]);
   const [noResults, setNoResult] = useState(false);
@@ -51,6 +52,8 @@ const Search = ({ match }) => {
     },
   }));
 
+  const classes = useStyles();
+
   const onSearchChange = (e) => {
     setSearch(e.target.value);
   };
@@ -65,12 +68,12 @@ const Search = ({ match }) => {
     getListOfPostings(search, token);
   };
 
-  const getListOfPostings = (courseCode, token) => {
+  const getListOfPostings = (groupCode, token) => {
     const config = {
       headers: { Authorization: `bearer ${token}` },
     };
     const body = {
-      courseCode,
+      groupCode,
     };
     axios
       .post(
@@ -91,8 +94,6 @@ const Search = ({ match }) => {
         console.log(err);
       });
   };
-
-  const classes = useStyles();
 
   return (
     <Container maxWidth="md" className={classes.Container}>
@@ -153,6 +154,7 @@ const Search = ({ match }) => {
             variant="contained"
             color="primary"
             className={classes.add}
+            startIcon={<AddIcon />}
             onClick={() => history.push(`/creategroup`)}
           >
             Dodaj grupę

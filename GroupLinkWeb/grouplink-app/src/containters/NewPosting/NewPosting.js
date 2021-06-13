@@ -22,7 +22,11 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
-const NewPosting = ({ match }) => {
+const NewPosting = ({ match, location }) => { 
+    const history = useHistory();
+
+    const token = useSelector((state) => state.auth.token);
+    const idUser = useSelector(state => state.auth.userId);
 
     const useStyles = makeStyles((theme) => ({
         paper: {
@@ -60,10 +64,6 @@ const NewPosting = ({ match }) => {
         title: yup
             .string("Podaj tytuł ogłoszenia")
             .required("Tytuł jest wymagany"),
-        amount: yup
-            .number("Ilość osób wymagana")
-            .min(1, "Min 1 osoba")
-            .required("Ilość osób wymagana"),
         content: yup
             .string("Podaj treść ogłoszenia")
             .max(255, "Maksymalnie 255 znaków")
@@ -71,13 +71,35 @@ const NewPosting = ({ match }) => {
 
     const formik = useFormik({
         initialValues: {
-            amount: "",
-            title: "",
-            content: "",
+            title: location.state.type === "new" ? "" : location.state.groupInfo.title,
+            content: location.state.type === "new" ? "" : location.state.groupInfo.title,
         },
         validationSchema: validationSchemaCreateGroup,
         onSubmit: (values) => {
             console.log(values);
+            const config = {
+                headers: { Authorization: `bearer ${token}` },
+              };
+              const body = {
+                "idUser": idUser,
+                "idCourse": location.state.groupInfo.idCourse,
+                "title": values.title,
+                "content": values.content,
+                "amount": 0
+              };
+              axios
+                .post(
+                  "http://localhost:8080/api/Notification",
+                  body,
+                  config
+                )
+                .then((res) => {
+                  console.log("register res", res);
+                  history.push(`/group/${location.state.groupInfo.idCourse}`)
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
         },
     });
 
@@ -92,22 +114,6 @@ const NewPosting = ({ match }) => {
                     noValidate
                     onSubmit={formik.handleSubmit}
                 >
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        fullWidth
-                        id="amount"
-                        name="amount"
-                        label="Ilość osób"
-                        value={formik.values.amount}
-                        onChange={formik.handleChange}
-                        error={formik.touched.amount && Boolean(formik.errors.amount)}
-                        helperText={formik.touched.amount && formik.errors.amount}
-                        autoFocus
-                        classes={{
-                            root: classes.root,
-                        }}
-                    />
                     <TextField
                         variant="outlined"
                         margin="normal"
@@ -153,12 +159,12 @@ const NewPosting = ({ match }) => {
                     </Button>
                 </form>
                 <Button
-                    onClick={formik.handleReset}
                     type=""
                     fullWidth
                     variant="outlined"
                     color="primary"
                     className={classes.submit}
+                    onClick={() => history.goBack()}
                 >
                     Anuluj
                 </Button>

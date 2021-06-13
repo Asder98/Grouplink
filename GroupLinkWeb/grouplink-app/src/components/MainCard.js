@@ -9,10 +9,11 @@ import {
 } from "@material-ui/core";
 import { fade, makeStyles } from "@material-ui/core/styles";
 
-const MainCard = (props) => {
+const MainCard = ({ details }) => {
   const useStyles = makeStyles((theme) => ({
     Card: {
       height: "100%",
+      width: '100%'
     },
     Paper: {
       backgroundColor: fade(theme.palette.primary.main, 0.2),
@@ -28,11 +29,13 @@ const MainCard = (props) => {
 
 const classes = useStyles();
 
+console.log(details)
+
   return (
     <Card
       className={classes.Card}
     >
-      <Paper elevation={1} className={classes.Paper}>
+      <Paper elevation={1} className={classes.Paper} width='100%'>
         <CardContent>
           <Box m={1} display="flex" alignItems="center" flexDirection="row">
             <Grid
@@ -42,16 +45,16 @@ const classes = useStyles();
             >
               <Grid item>
                 <Typography color="textSecondary" variant="body1">
-                  G12-14b
+                  {details.groupCode}
                 </Typography>
                 <Typography color="textPrimary" variant="h5">
-                  Zastosowania inf w Gospodarce
+                  {details.courseName}
                 </Typography>
                 <Typography color="textSecondary" variant="body1">
-                  Prowadzący: Robert Nitro
+                  Prowadzący: {details.lecturerName} {details.lecturerSurname}
                 </Typography>
                 <Typography color="textPrimary" variant="caption">
-                  Termin: XD
+                  Termin: {details.dayOfTheWeek}, {details.startTime} - {details.endTime}, {details.groupMixingType}
                 </Typography>
               </Grid>
             </Grid>

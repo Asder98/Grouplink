@@ -7,11 +7,25 @@ import {
   Typography,
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
 
 const UserPostingCard = ({ details }) => {
   const history = useHistory();
 
+  const useStyles = makeStyles((theme) => ({
+    add: {
+      margin: theme.spacing(2, 0, 1),
+      borderRadius: 25,
+      height: 50,
+      maxWidth: 200,
+      marginLeft: 5,
+    },
+  }));
+
+  const classes = useStyles();
+
   console.log(details)
+
   return (
     <Card sx={{ height: "100%" }}>
       <CardContent onClick={() => history.push(`/group/${details.idCourse}`)}>
@@ -37,9 +51,21 @@ const UserPostingCard = ({ details }) => {
             }}
           >
             <Box width={120}>
-              <Button color="primary" variant="contained">
-                Edytuj
-              </Button>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.add}
+            onClick={() =>
+              history.push({
+                pathname: `/createposting`,
+                state: { type: "edit", groupInfo: details },
+              })
+            }
+          >
+            Edytuj
+          </Button>
             </Box>
           </Box>
         </Box>
