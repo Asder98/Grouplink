@@ -17,7 +17,6 @@ import { useHistory } from "react-router-dom";
 import { showLogIn, showSignIn } from '../../store/actions/sign';
 
 const StartPage = ({ match }) => {
-  // console.log(match);
   let history = useHistory();
   const dispatch = useDispatch();
 

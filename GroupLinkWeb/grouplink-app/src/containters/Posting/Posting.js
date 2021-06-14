@@ -75,11 +75,9 @@ const Posting = ({match}) => {
         password,
         confirmPassword,
       };
-      console.log(body);
       axios
         .post("http://localhost:8080/api/User/register", body)
         .then((res) => {
-          console.log("register res", res);
           authenticate({ login, password });
           history.push("/");
         })
@@ -96,7 +94,6 @@ const Posting = ({match}) => {
       axios
         .post("http://localhost:8080/api/User/authenticate", body)
         .then((res) => {
-          console.log("auth res", res);
           dispatch(logIn(res.data.token, res.data.login, res.data.idUser));
           history.push("/");
         })
@@ -106,7 +103,6 @@ const Posting = ({match}) => {
         });
     };
   
-    // console.log(match)
     const classes = useStyles();
     // const createAcc = false; // ustawienie czy log in czy create acc
   

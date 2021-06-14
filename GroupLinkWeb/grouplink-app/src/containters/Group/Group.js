@@ -36,7 +36,6 @@ const Group = ({ match }) => {
         setPostings(res.data);
       })
       .catch((err) => {
-        console.log(err);
         alert("Błąd pobierania listy ogloszen");
       });
   };
@@ -48,11 +47,9 @@ const Group = ({ match }) => {
     axios
       .get(`http://localhost:8080/api/Course?id=${idCourse}`, config)
       .then((res) => {
-        console.log(res.data);
         setGroupInfo(res.data);
       })
       .catch((err) => {
-        console.log(err);
         alert("Błąd pobierania szczegółów grupy");
       });
   };
@@ -96,7 +93,7 @@ const Group = ({ match }) => {
             startIcon={<AddIcon />}
             onClick={() =>
               history.push({
-                pathname: `/createposting`,
+                pathname: "/createposting",
                 state: { type: "new", groupInfo: groupInfo },
               })
             }

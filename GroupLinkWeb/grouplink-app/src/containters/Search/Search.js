@@ -65,7 +65,10 @@ const Search = ({ match, location }) => {
   };
 
   const searchAction = () => {
-    getListOfPostings(search, token);
+    if(search.length > 0) {
+      getListOfPostings(search, token);
+    }
+    
   };
 
   const getListOfPostings = (groupCode, token) => {
@@ -82,7 +85,6 @@ const Search = ({ match, location }) => {
         config
       )
       .then((res) => {
-        console.log("register res", res);
         setGroups(res.data);
         if (res.data.length === 0) {
           setNoResult(true);
@@ -97,7 +99,7 @@ const Search = ({ match, location }) => {
 
   return (
     <Container maxWidth="md" className={classes.Container}>
-      <Box className={classes.searchbox} mt={groups.length === 0 ? "50%" : 2}>
+      <Box className={classes.searchbox} mt={groups.length === 0 ? "43%" : 2}>
         <TextField
           variant="outlined"
           margin="normal"

@@ -24,11 +24,9 @@ const UserPostingCard = ({ details }) => {
 
   const classes = useStyles();
 
-  console.log(details)
-
   return (
     <Card sx={{ height: "100%" }}>
-      <CardContent onClick={() => history.push(`/group/${details.idCourse}`)}>
+      <CardContent>
         <Box m={1} display="flex" alignItems="center" flexDirection="row">
           <Grid container spacing={3} sx={{ justifyContent: "space-between" }}>
             <Grid item>
@@ -51,21 +49,20 @@ const UserPostingCard = ({ details }) => {
             }}
           >
             <Box width={120}>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.add}
-            onClick={() =>
-              history.push({
-                pathname: `/createposting`,
-                state: { type: "edit", groupInfo: details },
-              })
-            }
-          >
-            Edytuj
-          </Button>
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.add}
+                onClick={() =>
+                  history.push({
+                    pathname: '/createposting',
+                    state: { type: "edit", details: details },
+                  })
+                }
+              >
+                Edytuj
+              </Button>
             </Box>
           </Box>
         </Box>

@@ -29,8 +29,6 @@ const MainCard = ({ details }) => {
 
 const classes = useStyles();
 
-console.log(details)
-
   return (
     <Card
       className={classes.Card}
