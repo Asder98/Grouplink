@@ -121,7 +121,7 @@ const NewPosting = ({ match, location }) => {
       .put("http://localhost:8080/api/Notification", body, config)
       .then((res) => {
         console.log("register res", res);
-        //history.push(`/mypostings`);
+        history.push("/mypostings");
       })
       .catch((err) => {
         console.log(err);

@@ -22,6 +22,8 @@ const UserPostingCard = ({ details }) => {
     },
   }));
 
+  console.log(details);
+
   const classes = useStyles();
 
   return (
