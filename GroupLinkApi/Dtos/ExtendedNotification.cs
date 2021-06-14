@@ -3,6 +3,7 @@
     public class ExtendedNotification
     {
         public int idNotification { get; set; }
+        public int idCourse { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public string Login { get; set; }

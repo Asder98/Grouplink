@@ -47,8 +47,9 @@ namespace GroupLinkApi.Services
                        where notifications.idUser == idUser 
                        select new ExtendedNotification
                        {
-                           CourseName = courses.courseName,
                            idNotification = notifications.idNotification,
+                           idCourse = courses.idCourse,
+                           CourseName = courses.courseName,
                            Title = notifications.title,
                            Content = notifications.content,
                            Email = users.email,
