@@ -77,7 +77,7 @@ const NewPosting = ({ match, location }) => {
     validationSchema: validationSchemaCreateGroup,
     onSubmit: (values) => {
       location.state.type === "edit"
-        ? putPosting(values, location.state.details.idNotification)
+        ? putPosting(values, location.state.details.idNotification, location.state.details.idCourse)
         : createPosting(values);
     },
   });
@@ -104,13 +104,14 @@ const NewPosting = ({ match, location }) => {
       });
   };
 
-  const putPosting = (values, idNotification) => {
+  const putPosting = (values, idNotification, idCourse) => {
     const config = {
       headers: { Authorization: `bearer ${token}` },
     };
     const body = {
       idNotification: idNotification,
       idUser: idUser,
+      idCourse: idCourse,
       title: values.title,
       content: values.content,
       amount: 0,

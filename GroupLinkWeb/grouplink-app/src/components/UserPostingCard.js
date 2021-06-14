@@ -31,13 +31,13 @@ const UserPostingCard = ({ details }) => {
           <Grid container spacing={3} sx={{ justifyContent: "space-between" }}>
             <Grid item>
               <Typography color="textSecondary" variant="body1">
-                {details.groupCode}
+                {details.groupCode}, {details.courseName}
               </Typography>
               <Typography color="textPrimary" variant="h5">
-                {details.courseName}
+                {details.title}
               </Typography>
               <Typography color="textPrimary" variant="caption">
-                {details.courseCode}
+                {details.content}
               </Typography>
             </Grid>
           </Grid>
