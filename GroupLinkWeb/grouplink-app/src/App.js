@@ -65,10 +65,9 @@ function App() {
     routes = (
       <Switch>
         <Route path="/start" component={StartPage} />
-        <Route path="/search/:id" component={Search} />
         <Route path="/creategroup" component={NewGroup} />
         <Route path="/group/:id" component={Group} />
-        <Route path="/posting/:id/edit" component={NewPosting} />
+        <Route path="/mypostings/edit" component={NewPosting} />
         <Route path="/createposting" component={NewPosting} />
         <Route path="/posting/:id" component={Posting} />
         <Route path="/mypostings" component={MyPostings} />

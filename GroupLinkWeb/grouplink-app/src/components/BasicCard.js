@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Box,
-  Button,
   Card,
   CardContent,
   Grid,
@@ -33,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 25,
     boxShadow: theme.shadows[5],
     minWidth: "60%",
+    maxWidth: "lg",
     padding: theme.spacing(2, 4, 3),
   },
 }));

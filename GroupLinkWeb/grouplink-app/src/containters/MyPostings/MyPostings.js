@@ -6,28 +6,21 @@ import {useSelector, useDispatch} from 'react-redux'
 import UserPostingCard from "../../components/UserPostingCard";
 
 const Group = ({ match }) => {
-  const userLogin = useSelector((state) => state.auth.login);
+  const userId = useSelector((state) => state.auth.userId);
   const [postings, setPostings] = useState([]);
   const [noResults, setNoResult] = useState(false);
   const token = useSelector((state) => state.auth.token);
-
-  console.log(postings);
 
   const getListOfPostings = () => {
     const config = {
       headers: { Authorization: `bearer ${token}` },
     };
-    const body = {
-      userLogin,
-    };
     axios
-      .post(
-        "http://localhost:8080/api/Course/GetUserCoursesFiltredData",
-        body,
+      .get(
+        `http://localhost:8080/api/Notification/${userId}`,
         config
       )
       .then((res) => {
-        console.log("register res", res);
         setPostings(res.data);
         if (res.data.length === 0) {
           setNoResult(true);
@@ -36,7 +29,6 @@ const Group = ({ match }) => {
         }
       })
       .catch((err) => {
-        console.log(err);
         alert("Błąd pobierania listy ogloszen");
       });
 
@@ -53,7 +45,7 @@ const Group = ({ match }) => {
 
   useEffect(() => {
     getListOfPostings();
-  }, [userLogin]);
+  }, [userId]);
 
   return (
     <Box

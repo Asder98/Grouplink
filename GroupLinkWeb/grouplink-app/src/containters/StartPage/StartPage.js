@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
 
 const StartPage = ({match}) => {
     const classes = useStyles();
-    console.log(match);
     
     return (
       <Container className={classes.root} maxWidth="xs">

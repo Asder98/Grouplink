@@ -58,7 +58,6 @@ const NewGroup = ({ match, location }) => {
     },
   }));
 
-  // console.log(match)
   const classes = useStyles();
 
   const validationSchemaCreateGroup = yup.object({
@@ -113,7 +112,6 @@ const NewGroup = ({ match, location }) => {
     },
     validationSchema: validationSchemaCreateGroup,
     onSubmit: (values) => {
-      console.log(values);
       const config = {
         headers: { Authorization: `bearer ${token}` },
       };
@@ -135,7 +133,6 @@ const NewGroup = ({ match, location }) => {
       axios
         .post("http://localhost:8080/api/Course/CreateNewCourse", body, config)
         .then((res) => {
-          console.log("register res", res);
           history.push(`/`);
         })
         .catch((err) => {
