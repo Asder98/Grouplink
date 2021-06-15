@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Route, Switch, withRouter, Redirect } from "react-router";
+import { Route, Switch, Redirect } from "react-router";
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import "./App.css";
@@ -9,7 +9,6 @@ import Landing from "./containters/Landing/Landing";
 import Search from "./containters/Search/Search";
 import Group from "./containters/Group/Group";
 import NewGroup from "./containters/NewGroup/NewGroup";
-import Posting from "./containters/Posting/Posting";
 import MyPostings from "./containters/MyPostings/MyPostings";
 import NewPosting from "./containters/NewPosting/NewPosting";
 import Layout from "./hoc/Layout/Layout";
@@ -69,7 +68,6 @@ function App() {
         <Route path="/group/:id" component={Group} />
         <Route path="/mypostings/edit" component={NewPosting} />
         <Route path="/createposting" component={NewPosting} />
-        <Route path="/posting/:id" component={Posting} />
         <Route path="/mypostings" component={MyPostings} />
         <Route path="/" component={Search} />
       </Switch>

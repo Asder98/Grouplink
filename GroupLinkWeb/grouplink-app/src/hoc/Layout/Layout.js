@@ -4,13 +4,10 @@ import {
   Toolbar,
   Typography,
   Button,
-  Container,
-  Card,
   Box,
-  Paper,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { logIn, logOut } from "../../store/actions/auth";
+import { logOut } from "../../store/actions/auth";
 import { showLogIn, showSignIn } from "../../store/actions/sign";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./Layout.module.css";

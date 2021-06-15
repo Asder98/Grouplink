@@ -1,32 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import Lock from "@material-ui/icons/Lock";
-import ArrowForward from "@material-ui/icons/ArrowForward";
-import { logIn, logOut } from "../../store/actions/auth";
-import { showLogIn, showSignIn } from "../../store/actions/sign";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import NativeSelect from "@material-ui/core/NativeSelect";
 
 const NewGroup = ({ match, location }) => {
   const history = useHistory();
 
   const token = useSelector((state) => state.auth.token);
-  const idUser = useSelector(state => state.auth.userId);
   const userLogin = useSelector(state => state.auth.login);
 
   const useStyles = makeStyles((theme) => ({

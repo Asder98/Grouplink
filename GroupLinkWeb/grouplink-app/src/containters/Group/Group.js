@@ -74,12 +74,12 @@ const Group = ({ match }) => {
               Przeglądasz ogłoszenia w grupie:
             </Typography>
           </Box>
-          <Box display='flex' justifyContent="center" width="100%">
-          {groupInfo ? (
-            <MainCard details={groupInfo} />
-          ) : (
-            <CircularProgress color="secondary" />
-          )}
+          <Box display="flex" justifyContent="center" width="100%">
+            {groupInfo ? (
+              <MainCard details={groupInfo} />
+            ) : (
+              <CircularProgress color="secondary" />
+            )}
           </Box>
         </Box>
         <Box display="flex" justifyContent="space-between">

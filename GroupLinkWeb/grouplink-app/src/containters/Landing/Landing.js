@@ -1,20 +1,11 @@
 import React from "react";
 import styles from "./Landing.module.css";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Container,
-  Card,
-  Box,
-  Paper,
-} from "@material-ui/core";
+import { Typography, Button, Box, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import {useSelector, useDispatch} from 'react-redux'
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { showLogIn, showSignIn } from '../../store/actions/sign';
+import { showLogIn, showSignIn } from "../../store/actions/sign";
 
 const StartPage = ({ match }) => {
   let history = useHistory();
@@ -34,15 +25,13 @@ const StartPage = ({ match }) => {
   const classes = useStyles();
 
   const onClickLogIn = () => {
-    dispatch(showLogIn())
-    history.push('/login');  
-  }
+    dispatch(showLogIn());
+    history.push("/login");
+  };
   const onClickSignIn = () => {
-    dispatch(showSignIn())
-    history.push('/register');  
-  }
-  
-
+    dispatch(showSignIn());
+    history.push("/register");
+  };
 
   return (
     <div>
@@ -50,20 +39,20 @@ const StartPage = ({ match }) => {
         display="flex"
         alignItems="center"
         flexWrap="nowrap"
-        justifyContent="space-between"
+        justifyContent="center"
         className={styles.cardWrapper}
       >
         <Paper elevation={0} className={styles.paper}>
           <Box
             flexDirection="column"
             display="flex"
-            justifyContent="space-evenly"
+            justifyContent="center"
             alignItems="center"
           >
             <Typography variant="h4" color="primary">
               Kolejny projekt grupowy?
             </Typography>
-            <Typography variant="body" color="primary">
+            <Typography variant="body1" color="primary">
               Skorzystaj z naszej platformy! Znajdziesz tutaj osoby, które
               również szukają partnerów do projektu!
             </Typography>
