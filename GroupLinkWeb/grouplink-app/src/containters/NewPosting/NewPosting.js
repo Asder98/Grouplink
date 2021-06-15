@@ -96,7 +96,6 @@ const NewPosting = ({ match, location }) => {
     axios
       .post("http://localhost:8080/api/Notification", body, config)
       .then((res) => {
-        console.log("register res", res);
         history.push(`/group/${location.state.groupInfo.idCourse}`);
       })
       .catch((err) => {
@@ -116,11 +115,10 @@ const NewPosting = ({ match, location }) => {
       content: values.content,
       amount: 0,
     };
-    console.log(body);
+
     axios
       .put("http://localhost:8080/api/Notification", body, config)
       .then((res) => {
-        console.log("register res", res);
         history.push("/mypostings");
       })
       .catch((err) => {
@@ -139,14 +137,12 @@ const NewPosting = ({ match, location }) => {
           config
         )
         .then((res) => {
-          console.log("register res", res);
           history.push(`/mypostings`);
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
-      // Do nothing!
       console.log("Wstrzymano!");
     }
   };
